@@ -132,7 +132,7 @@ public class Application {
       case SDLK_ESCAPE:
         return .exitSuccess
       default:
-        Keyboard.instance.keyDownEvent(scan: event.key.scancode, repeat: event.key.repeat != 0)
+        Keyboard.instance.keyDownEvent(scan: event.key.scancode, repeat: event.key.repeat)
       }
       return .running
 
@@ -154,13 +154,13 @@ public class Application {
       return .running
     case SDL_EVENT_GAMEPAD_BUTTON_DOWN, SDL_EVENT_GAMEPAD_BUTTON_UP:
       GameController.instance.buttonEvent(id: event.gbutton.which,
-        btn: SDL_GamepadButton(Int32(event.gbutton.button)), state: event.gbutton.state)
+        btn: SDL_GamepadButton(Int32(event.gbutton.button)), state: event.gbutton.down)
       return .running
 
     case SDL_EVENT_MOUSE_BUTTON_DOWN, SDL_EVENT_MOUSE_BUTTON_UP:
       Mouse.instance.buttonEvent(
         btn: UInt32(event.button.button),
-        state: event.button.state)
+        state: event.button.down)
       return .running
     case SDL_EVENT_MOUSE_MOTION:
       Mouse.instance.motionEvent(

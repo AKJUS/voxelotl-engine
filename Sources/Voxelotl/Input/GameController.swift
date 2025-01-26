@@ -92,7 +92,7 @@ public class GameController {
     //MARK: - Private
 
     private var _joyInstance: SDL_JoystickID, _sdlPad: OpaquePointer
-    private var _axes = [Int16](repeating: 0, count: Int(SDL_GAMEPAD_AXIS_MAX.rawValue))
+	private var _axes = [Int16](repeating: 0, count: Int(SDL_GAMEPAD_AXIS_COUNT.rawValue))
     private var _btnCur: Buttons = [], _btnPrv: Buttons = []
 
     internal var instanceID: SDL_JoystickID { _joyInstance }
@@ -167,8 +167,8 @@ public class GameController {
     }
   }
 
-  internal func buttonEvent(id: SDL_JoystickID, btn: SDL_GamepadButton, state: UInt8) {
-    _pads[id]?.buttonEvent(btn, state == SDL_PRESSED)
+  internal func buttonEvent(id: SDL_JoystickID, btn: SDL_GamepadButton, state: Bool) {
+    _pads[id]?.buttonEvent(btn, state)
   }
 
   internal func axisEvent(id: SDL_JoystickID, axis: SDL_GamepadAxis, value: Int16) {

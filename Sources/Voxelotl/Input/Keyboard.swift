@@ -38,7 +38,7 @@ public class Keyboard {
   private static let _PRESS: UInt8 = _DOWN | _IMPULSE
   private static let _RELEASE: UInt8 = _UP | _IMPULSE
 
-  private var _state = [UInt8](repeating: _UP, count: Int(SDL_NUM_SCANCODES.rawValue))
+  private var _state = [UInt8](repeating: _UP, count: Int(SDL_SCANCODE_COUNT.rawValue))
 
   internal func keyDownEvent(scan: SDL_Scancode, repeat rep: Bool) {
     var newState = Self._PRESS

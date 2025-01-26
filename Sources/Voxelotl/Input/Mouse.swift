@@ -53,8 +53,8 @@ public class Mouse {
   private func getAbsolute() -> SIMD2<Float> { self._abs * self._dpiScale }
   private func getDelta() -> SIMD2<Float> { self._delta }
 
-  internal func buttonEvent(btn: UInt32, state: UInt8) {
-    if state == SDL_PRESSED {
+  internal func buttonEvent(btn: UInt32, state: Bool) {
+    if state {
       self._btns.formUnion(.init(rawValue: btn.buttonMask))
     } else {
       self._btns.subtract(.init(rawValue: btn.buttonMask))
