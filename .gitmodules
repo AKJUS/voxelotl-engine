@@ -1,0 +1,3 @@
+[submodule "External/SDLSwift"]
+	path = External/SDLSwift
+	url = https://github.com/GayPizzaSpecifications/SDL3Swift.git
