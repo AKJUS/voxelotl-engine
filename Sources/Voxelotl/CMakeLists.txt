@@ -97,7 +97,7 @@ set_source_files_properties(
 )
 
 target_include_directories(Voxelotl PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
-target_link_libraries(Voxelotl PRIVATE SDLSwift)
+target_link_libraries(Voxelotl PRIVATE SDLSwift::SDL3)
 target_compile_definitions(Voxelotl PRIVATE $<$<CONFIG:Debug>:DEBUG>)
 
 if(VOXELOTL_MOBILE_ENABLED)
@@ -110,12 +110,10 @@ else()
   set(VOXELOTL_ENTITLEMENTS "${CMAKE_CURRENT_SOURCE_DIR}/Voxelotl.entitlements")
 endif()
 
+sdl3swift_xcode_properties(Voxelotl)
 set_target_properties(Voxelotl PROPERTIES
   XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME YES
   XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "gay.pizza.voxelotl"
-  XCODE_EMBED_FRAMEWORKS "${SDL3}"
-  XCODE_EMBED_FRAMEWORKS_REMOVE_HEADERS_ON_COPY YES
-  XCODE_EMBED_FRAMEWORKS_CODE_SIGN_ON_COPY YES
   MACOSX_BUNDLE_BUNDLE_NAME "Voxelotl"
   MACOSX_BUNDLE_BUNDLE_VERSION "${PROJECT_VERSION}"
   MACOSX_BUNDLE_SHORT_VERSION_STRING "${PROJECT_VERSION}"
